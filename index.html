@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Which Cowboy Bebop Character Are You?</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Which Cowboy Bebop Character Are You?</h1>
+    <img src="https://thumbs.gfycat.com/AcademicMagnificentAbyssiniangroundhornbill-size_restricted.gif"
+<body>
+		<form>
+			<label for="q1">What's your favorite kind of music?</label><br>
+			<select id="q1" name="q1">
+				<option value="">Select an option</option>
+				<option value="blues">Blues</option>
+				<option value="jazz">Jazz</option>
+				<option value="rock">Rock</option>
+				<option value="pop">Pop</option>
+			</select><br>
+
+			<label for="q2">What's your favorite thing to do?</label><br>
+			<select id="q2" name="q2">
+				<option value="">Select an option</option>
+				<option value="bounty hunting">Bounty Hunting</option>
+				<option value="playing music">Playing Music</option>
+				<option value="cooking">Cooking</option>
+				<option value="sleeping">Sleeping</option>
+			</select><br>
+
+			<button type="button" onclick="calculateResult()">Submit</button>
+		</form>
+		<div id="result"></div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
+
+<script>
+  // Define the possible results
+  let results = [
+    { name: "Spike Spiegel", image: "https://animesher.com/orig/1/133/1333/13336/animesher.com_gif-cowboy-bebop-sad-1333691.gif" },
+    { name: "Jet Black", image: "https://media.tenor.com/xd1sncuMw_cAAAAC/jet-black-cowboy-bebop.gif" },
+    { name: "Faye Valentine", image: "https://media.tenor.com/xRIKqvnmKYYAAAAd/faye-valentine-cowboy-bebop.gif" },
+    { name: "Edward Wong Hau Pepelu Tivrusky IV", image: "https://media.tenor.com/f1CY6o0gAXQAAAAC/radical-edward-cowboy-bebop.gif" }
+  ];
+  
+  function calculateResult() {
+    // Get the values of the user's answers
+    let q1 = document.getElementById("q1").value;
+    let q2 = document.getElementById("q2").value;
+
+    // Filter the results based on the user's answers
+    let filteredResults = results.filter(result => {
+      if (q1 === "blues" && q2 === "bounty hunting" && result.name === "Spike Spiegel") {
+        return true;
+      }
+      return false;
+    });
+
+    // If there are no filtered results, choose a random result
+    if (filteredResults.length === 0) {
+      let randomIndex = Math.floor(Math.random() * results.length);
+      filteredResults = [results[randomIndex]];
+    }
+
+    // Display the result
+    let resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = `
+      <h2>You are ${filteredResults[0].name}!</h2>
+      <img src="${filteredResults[0].image}" alt="${filteredResults[0].name}">
+    `;
+    resultDiv.style.display = "block";
+  }
+  
+  // Prompt the user to add a new character
+  let addCharacter = confirm("Would you like to add a new character?");
+  if (addCharacter) {
+    let name = prompt("What is the name of the character?");
+    let image = prompt("What is the URL of the character's image?");
+    results.push({ name, image });
+  }
+</script src="script.js"></script>
+</body>
+</html>
